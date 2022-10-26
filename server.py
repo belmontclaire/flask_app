@@ -3,22 +3,16 @@
 ##########################################################
 import json
 from flask import Flask, request, jsonify  
-import shap
 import pickle
 import pandas as pd
 import numpy as np
-#from Model import ClientModel, Client
+import uvicorn
+#from waitress import serve
 app = Flask(__name__)
 
-<<<<<<< HEAD
-loaded_model = pickle.load(open("/Users/belmontclaire/Documents/Projet7/finalized_model.sav", 'rb'))
+loaded_model = pickle.load(open("finalized_model.sav", 'rb'))
 
-df = pd.read_csv("/Users/belmontclaire/Documents/Projet7/DataTestSample.csv", header = 0)
-=======
-loaded_model = pickle.load(open("/Users/belmontclaire/Documents/TestProjet7/finalized_model.sav", 'rb'))
-
-df = pd.read_csv("/Users/belmontclaire/Documents/TestProjet7/DataTest.csv", header = 0)
->>>>>>> 39a093b (ajout du fichier qui permet de deployer le model)
+df = pd.read_csv("https://raw.githubusercontent.com/belmontclaire/Test/main/DataTestSample.csv", header = 0)
 
 @app.route('/api/<int:id_client>')
 def credit(id_client):
